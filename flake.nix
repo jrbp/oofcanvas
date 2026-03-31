@@ -18,8 +18,8 @@
         with ps; [
           numpy
           scikit-image
-          matplotlib
-          pygobject3
+          #matplotlib
+          #pygobject3
         ]);
     in {
       default = self.packages.${system}.oofCanvas;
@@ -32,12 +32,12 @@
         nativeBuildInputs = with pkgs; [
           cmake
           pkg-config
+          swig
         ];
         buildInputs = with pkgs; [
           gtk3
-          swig
           cairomm
-          pango
+          #pango
           pythonEnv
           python3Packages.pygobject3 # needed by pkgconf (not just python) so we expose here
         ];
