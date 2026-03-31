@@ -34,7 +34,6 @@
           pkg-config
         ];
         buildInputs = with pkgs; [
-          openblas
           gtk3
           swig
           cairomm
