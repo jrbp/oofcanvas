@@ -33,21 +33,14 @@
           cmake
           pkg-config
           swig
-          # wrapGAppsHook3
         ];
         buildInputs = with pkgs; [
-          # glib
-          # gobject-introspection
           gtk3
           cairomm
           pango
           pythonEnv
           python3Packages.pygobject3
         ];
-
-        # cmakeFlags = [
-        #   "-DPYTHON_EXECUTABLE=${pythonEnv}/bin/python"
-        # ];
 
         meta = with pkgs.lib; {
           description = "OOFCanvas: A replacement for libgnomecanvas built for OOF2";
