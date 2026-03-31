@@ -25,14 +25,13 @@
       default = self.packages.${system}.oof-canvas;
       oof-canvas = pkgs.stdenv.mkDerivation {
         pname = "oof-canvas";
-        version = "1.2.1";
+        version = "1.2.0";
 
         src = ./.;
 
         nativeBuildInputs = with pkgs; [
           cmake
           pkg-config
-          python3Packages.pygobject3 # pkgconf needs to see this (not just python)
         ];
         buildInputs = with pkgs; [
           gtk3
@@ -40,6 +39,7 @@
           cairomm
           pango
           pythonEnv
+          python3Packages.pygobject3 # needed by pkgconf (not just python) so we expose here
         ];
 
         meta = with pkgs.lib; {
