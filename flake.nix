@@ -22,9 +22,9 @@
           pygobject3
         ]);
     in {
-      default = self.packages.${system}.oof-canvas;
-      oof-canvas = pkgs.stdenv.mkDerivation {
-        pname = "oof-canvas";
+      default = self.packages.${system}.oofCanvas;
+      oofCanvas = pkgs.stdenv.mkDerivation {
+        pname = "oofCanvas";
         version = "1.2.0";
 
         src = ./.;
@@ -48,12 +48,28 @@
           platforms = platforms.linux;
         };
       };
+      oofCanvasPython = let
+        oofcnv = self.packages.${system}.oofCanvas;
+      in
+        pkgs.python3.pkgs.buildPythonPackage {
+          pname = "oofCanvasPython";
+          inherit (oofcnv) version;
+          dontUnpack = true;
+          format = "other";
+          installPhase = ''
+            mkdir -p $out/${pkgs.python3.sitePackages}
+            for f in ${oofcnv}/${pkgs.python3.sitePackages}/*; do
+              ln -s "$f" $out/${pkgs.python3.sitePackages}/
+            done
+          '';
+          propagatedBuildInputs = [oofcnv];
+        };
     });
     devShells = eachSupportedSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
     in
       pkgs.mkShell {
-        inputsFrom = [ self.packages.${system}.default ];
+        inputsFrom = [self.packages.${system}.default];
       });
   };
 }
