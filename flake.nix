@@ -33,13 +33,13 @@
           cmake
           pkg-config
           swig
+          python3Packages.pygobject3 # pkgconf needs to see this (not just python)
         ];
         buildInputs = with pkgs; [
           gtk3
           cairomm
           pango
           pythonEnv
-          python3Packages.pygobject3
         ];
 
         meta = with pkgs.lib; {
