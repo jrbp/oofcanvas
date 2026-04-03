@@ -9,7 +9,12 @@
     self,
     nixpkgs,
   }: let
-    supportedSystems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
+    supportedSystems = [
+      "x86_64-linux"
+      "aarch64-linux"
+      "arm64-apple-darwin"
+      "x86_64-apple-darwin"
+    ];
     eachSupportedSystem = nixpkgs.lib.genAttrs supportedSystems;
   in {
     packages = eachSupportedSystem (system: let
