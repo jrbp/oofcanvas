@@ -18,8 +18,8 @@
         with ps; [
           numpy
           scikit-image
-          #matplotlib
-          #pygobject3
+          #matplotlib # doesn't seem needed to build?
+          #pygobject3 # doesn't seem needed to build?
         ]);
     in {
       default = self.packages.${system}.oofCanvas;
@@ -37,7 +37,7 @@
         buildInputs = with pkgs; [
           gtk3
           cairomm
-          #pango
+          pango # propagated by gtk3, but we still include
           pythonEnv
           python3Packages.pygobject3 # needed by pkgconf (not just python) so we expose here
         ];
